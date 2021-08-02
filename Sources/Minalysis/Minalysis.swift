@@ -14,7 +14,7 @@ func analyze(_ field: [[Int]]) throws -> [[Double]] {
                 continue
             }
             let explored = explore(row: row, col: col, width: width, height: height, mineField: field, depth: 2)
-            let prediction: Double = 1 / Double(9 - explored)
+            let prediction: Double = Double(field[row][col]) / Double(9 - explored)
             mark(row: row, col: col, width: width, height: height, field: field, result: &result, depth: 2, prediction: prediction)
         }
     }

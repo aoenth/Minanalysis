@@ -56,4 +56,77 @@ final class MinalysisTests: XCTestCase {
         let result = try sut(input)
         XCTAssertEqual(result, expectation, errorMessage(input, result, expectation))
     }
+
+    func testFieldOfSize2x2With1MineLeft_shouldBe100PercentOn1Mine() throws {
+        let input = [
+            [-1, 1],
+            [ 1, 1],
+        ]
+        let expectation: [[Double]] = [
+            [1, 0],
+            [0, 0],
+        ]
+        let result = try sut(input)
+        XCTAssertEqual(result, expectation, errorMessage(input, result, expectation))
+    }
+
+    func testFieldOfSize2x2With2MinesLeft_shouldBe100PercentOn2Mines() throws {
+        let input = [
+            [-1, -1],
+            [ 2,  2],
+        ]
+        let expectation: [[Double]] = [
+            [1, 1],
+            [0, 0],
+        ]
+        let result = try sut(input)
+        XCTAssertEqual(result, expectation, errorMessage(input, result, expectation))
+    }
+
+    func testFieldOfSize3x3With3MinesLeft_shouldBe100PercentOn3Mines() throws {
+        let input = [
+            [-1, -1, -1],
+            [ 2,  3,  2],
+            [ 0,  0,  0]
+        ]
+        let expectation: [[Double]] = [
+            [1, 1, 1],
+            [0, 0 ,0],
+            [0, 0 ,0],
+        ]
+        let result = try sut(input)
+        XCTAssertEqual(result, expectation, errorMessage(input, result, expectation))
+    }
+
+
+    func testFieldOfSize3x3With4MinesLeft_shouldBe100PercentOn4Mines() throws {
+        let input = [
+            [-1, -1, -1],
+            [ 3,  4,  3],
+            [ 1, -1,  1]
+        ]
+        let expectation: [[Double]] = [
+            [1, 1, 1],
+            [0, 0 ,0],
+            [0, 1 ,0],
+        ]
+        let result = try sut(input)
+        XCTAssertEqual(result, expectation, errorMessage(input, result, expectation))
+    }
+
+
+    func testFieldOfSize3x3With3MinesLeft_shouldBe100PercentOn3Mines_50PercentOn2Mines() throws {
+        let input = [
+            [-1, -1, -1],
+            [ 3,  4,  3],
+            [-1, -1,  1]
+        ]
+        let expectation: [[Double]] = [
+            [0.5, 1, 1],
+            [  0, 0 ,0],
+            [0.5, 1 ,0],
+        ]
+        let result = try sut(input)
+        XCTAssertEqual(result, expectation, errorMessage(input, result, expectation))
+    }
 }
